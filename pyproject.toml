@@ -1,0 +1,55 @@
+[project]
+authors = [
+  {name = "zcf0508", email = "zcf0508@live.com"},
+]
+dependencies = [
+  "feedparser>=6.0.10",
+  "bilili>=1.4.15",
+  "flask>=3.0.0",
+  "openai-whisper>=20230918",
+]
+description = "Provide an RSS feed that transcribes Bilibili videos into text."
+name = "bilivideo-transcribe-rss"
+readme = "README.md"
+requires-python = ">=3.10"
+version = "0.1.0"
+
+[project.scripts]
+dev = 'bilivideo_transcribe_rss:main'
+
+[build-system]
+build-backend = "hatchling.build"
+requires = ["hatchling"]
+
+[tool.rye]
+dev-dependencies = [
+  "mypy>=1.6.0",
+  "ruff>=0.0.292",
+  "black>=23.9.1",
+]
+managed = true
+
+[tool.hatch.metadata]
+allow-direct-references = true
+
+[[tool.rye.sources]]
+name = "pytorch"
+type = "index"
+url = "https://download.pytorch.org/whl/cu118"
+
+[tool.mypy]
+files = ["src/bilivideo_transcribe_rss"]
+python_version = "3.10"
+
+# https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html
+[tool.black]
+line-length = 120
+
+[tool.ruff]
+line-length = 120
+# https://beta.ruff.rs/docs/rules/
+ignore = ["F401"]
+select = ["E", "W", "F"]
+# Exclude a variety of commonly ignored directories.
+ignore-init-module-imports = true
+respect-gitignore = true
