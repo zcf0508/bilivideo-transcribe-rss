@@ -9,6 +9,7 @@ dependencies = [
   "faster-whisper>=0.9.0",
   "setuptools>=68.2.2",
   "python-dotenv>=1.0.0",
+  "torch==2.1.0+cu118",
 ]
 description = "Provide an RSS feed that transcribes Bilibili videos into text."
 name = "bilivideo-transcribe-rss"

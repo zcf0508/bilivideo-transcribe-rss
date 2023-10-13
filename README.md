@@ -37,6 +37,9 @@ flask --app ./src/bilivideo_transcribe_rss run --debug
 BASE_SAVE_PATH=""
 # RSSHUB 服务的域名
 RSSHUB_HOST="rsshub.app"
+# whisper 模型大小
+# https://huggingface.co/guillaumekln
+MODEL_SIZE="medium"
 ```
 
 2. 启动 flask 服务，然后访问 `http://localhost:5000/{bilibili_user_id}` 。初次访问会触发视频下载和文本转录，返回的 feed 中，内容为空。转换完成后再次访问即可获得完整结果。

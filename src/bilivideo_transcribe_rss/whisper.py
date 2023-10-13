@@ -1,4 +1,7 @@
+import torch
 from faster_whisper import WhisperModel
+
+from .constant import MODEL_SIZE
 
 
 def transcribe(
@@ -6,10 +9,12 @@ def transcribe(
 ) -> str:
     file_name = file_path.split("/")[-1].split(".")[0]
 
-    model_size = "medium"
-
-    # Run on GPU with FP16
-    model = WhisperModel(model_size, device="cuda", compute_type="float16")
+    if torch.cuda.is_available():
+        # Run on GPU with FP16
+        model = WhisperModel(MODEL_SIZE, device="cuda", compute_type="float16")
+    else:
+        # Run on CPU
+        model = WhisperModel(MODEL_SIZE, device="cpu", compute_type="int8")
 
     segments, _ = model.transcribe(
         file_path,
