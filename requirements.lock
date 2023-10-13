@@ -36,6 +36,7 @@ onnxruntime==1.16.1
 packaging==23.2
 protobuf==4.24.4
 pyreadline3==3.4.1
+python-dotenv==1.0.0
 pyyaml==6.0.1
 requests==2.31.0
 sgmllib3k==1.0.0

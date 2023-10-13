@@ -41,6 +41,7 @@ pathspec==0.11.2
 platformdirs==3.11.0
 protobuf==4.24.4
 pyreadline3==3.4.1
+python-dotenv==1.0.0
 pyyaml==6.0.1
 requests==2.31.0
 ruff==0.0.292

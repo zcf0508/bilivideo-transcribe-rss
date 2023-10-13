@@ -1,21 +1,31 @@
-import json
+# fmt: off
 import os
+
+from dotenv import load_dotenv
+
+load_dotenv()
+# fmt: on
+
+import json
 import threading
 
-from flask import Flask, jsonify
+from flask import Flask, make_response
 
 from .constant import BASE_SAVE_PATH
 from .download import download
-from .feed import parse
+from .feed import gen, parse
 from .utils import read_file
 from .whisper import transcribe
 
 app = Flask(__name__)
 
 
-@app.route("/")
-def hello_world():
-    return jsonify(main())
+@app.route("/<bilibili_user_id>")
+def hello_world(bilibili_user_id: str):
+    rss_str = main(bilibili_user_id)
+    response = make_response(rss_str)
+    response.headers["Content-Type"] = "application/xml"
+    return response
 
 
 lock = threading.Lock()
@@ -77,8 +87,8 @@ def download_and_transcribe(urls: list[str], save_dir: str):
                     json.dump(status, f)
 
 
-def main():
-    user_id, urls, _ = parse()
+def main(user_id):
+    _, urls, rss = parse(user_id)
     save_dir = os.path.join(BASE_SAVE_PATH, user_id)
     status_file = os.path.join(save_dir, "status.json")
     if not os.path.exists(status_file):
@@ -98,7 +108,7 @@ def main():
         t = threading.Thread(target=download_and_transcribe, args=(urls, save_dir), daemon=True)
         t.start()
 
-        return status
+        return gen(rss, status)
     else:
         with open(status_file, "r", encoding="utf-8") as f:
             status = json.load(f)
@@ -114,4 +124,4 @@ def main():
         t.start()
         with open(status_file, "r", encoding="utf-8") as f:
             status = json.load(f)
-            return status
+            return gen(rss, status)
