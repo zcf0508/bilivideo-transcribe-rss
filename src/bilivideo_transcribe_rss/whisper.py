@@ -21,8 +21,8 @@ def transcribe(
         language="zh",
         # https://github.com/guillaumekln/faster-whisper/issues/71
         temperature=0,
-        initial_prompt=f"视频标题是《{file_name}》,使用简体中文，增加标点。",
-        vad_filter=True,
+        initial_prompt=f"视频标题是《{file_name}》，使用简体中文，增加标点。",
+        # vad_filter=True,
     )
 
     segments = list(segments)
