@@ -50,10 +50,10 @@ MODEL_SIZE="medium"
 
 ```bash
 # build
-docker build -t bilivideo-transcribe-rss:latest
+docker build -t bilivideo-transcribe-rss:latest .
 
 # run
-docker run -v /app:/app -p 5000:5000 --gpus all bilivideo-transcribe-rss:latest
+docker run --name bilivideo-transcribe-rss -v /app:/app -p 5000:5000 --gpus all bilivideo-transcribe-rss:latest
 ```
 
 1. 复制 .env.example 为 .env ，并修改其中的配置。
