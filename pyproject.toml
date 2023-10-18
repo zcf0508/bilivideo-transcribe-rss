@@ -13,7 +13,6 @@ dependencies = [
 ]
 description = "Provide an RSS feed that transcribes Bilibili videos into text."
 name = "bilivideo-transcribe-rss"
-readme = "README.md"
 requires-python = ">=3.10"
 version = "0.1.0"
 

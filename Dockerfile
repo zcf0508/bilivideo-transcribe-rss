@@ -9,7 +9,6 @@ RUN mkdir -p /app
 WORKDIR /app
 COPY ./requirements.lock /app/requirements.lock
 COPY ./pyproject.toml /app/pyproject.toml
-COPY ./README.md /app/README.md
 RUN cp requirements.lock requirements.txt
 RUN pip install -r requirements.txt --extra-index-url https://download.pytorch.org/whl/cu118
 COPY . /app
