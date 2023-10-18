@@ -30,6 +30,8 @@ flask --app ./src/bilivideo_transcribe_rss run --debug
 
 ## 使用
 
+### 源码启动
+
 1. 复制 .env.example 为 .env ，并修改其中的配置。
 
 ```env
@@ -44,3 +46,16 @@ MODEL_SIZE="medium"
 
 2. 启动 flask 服务，然后访问 `http://localhost:5000/{bilibili_user_id}` 。初次访问会触发视频下载和文本转录，返回的 feed 中，内容为空。转换完成后再次访问即可获得完整结果。
 
+### Docker启动
+
+```bash
+# build
+docker build -t bilivideo-transcribe-rss:latest
+
+# run
+docker run -v /app:/app -p 5000:5000 --gpus all bilivideo-transcribe-rss:latest
+```
+
+1. 复制 .env.example 为 .env ，并修改其中的配置。
+
+2. 重启服务，然后访问 `http://localhost:5000/{bilibili_user_id}` 。
