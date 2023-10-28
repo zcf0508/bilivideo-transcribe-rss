@@ -1,7 +1,9 @@
 {
     "recommendations": [
+        "ms-python.python",
+        "ms-python.vscode-pylance",
+        "donjayamanne.python-environment-manager",
         "ms-python.black-formatter",
         "charliermarsh.ruff",
-        "ms-python.mypy-type-checker",
     ]
 }

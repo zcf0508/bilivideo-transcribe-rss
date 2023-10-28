@@ -11,4 +11,5 @@
     "editor.wordWrap": "bounded",
     "editor.wordWrapColumn": 120,
     "editor.tabSize": 4,
+    "python.analysis.typeCheckingMode": "basic",
 }

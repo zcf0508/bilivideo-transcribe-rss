@@ -25,7 +25,6 @@ requires = ["hatchling"]
 
 [tool.rye]
 dev-dependencies = [
-  "mypy>=1.6.0",
   "ruff>=0.0.292",
   "black>=23.9.1",
 ]
